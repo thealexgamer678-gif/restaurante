@@ -7,8 +7,8 @@ const Analytics: React.FC = () => {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h2 className="text-2xl font-bold text-text mb-2">Analytics</h2>
-        <p className="text-text-secondary">Platform performance and insights</p>
+        <h2 className="text-2xl font-bold text-text mb-2">Analítica</h2>
+        <p className="text-text-secondary">Rendimiento e información de la plataforma</p>
       </div>
 
       {/* Coming Soon */}
@@ -21,20 +21,20 @@ const Analytics: React.FC = () => {
             <Users className="w-12 h-12 text-warning opacity-50" />
           </div>
           <h3 className="text-2xl font-bold text-text mb-3">
-            Analytics Dashboard Coming Soon
+Panel de analítica próximamente
           </h3>
           <p className="text-text-secondary text-lg mb-6">
-            Advanced reporting and insights are under development.
+Los reportes avanzados e información están en desarrollo.
           </p>
           <div className="bg-bg-subtle rounded-lg p-6 text-left">
-            <h4 className="font-semibold text-text mb-3">Planned Features:</h4>
+            <h4 className="font-semibold text-text mb-3">Funciones planificadas:</h4>
             <ul className="space-y-2 text-text-secondary">
-              <li>• Revenue trends and forecasting</li>
-              <li>• Restaurant performance comparison</li>
-              <li>• Order analytics and peak hours</li>
-              <li>• Customer behavior insights</li>
-              <li>• Subscription metrics and churn analysis</li>
-              <li>• Export reports (PDF/Excel)</li>
+              <li>• Tendencias de ingresos y pronósticos</li>
+              <li>• Comparación del rendimiento de restaurantes</li>
+              <li>• Analítica de pedidos y horas pico</li>
+              <li>• Información sobre el comportamiento de clientes</li>
+              <li>• Métricas de suscripción y análisis de cancelaciones</li>
+              <li>• Exportar reportes (PDF/Excel)</li>
             </ul>
           </div>
         </div>

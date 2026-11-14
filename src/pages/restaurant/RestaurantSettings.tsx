@@ -15,7 +15,7 @@ const RestaurantSettings: React.FC = () => {
       try {
         const user = JSON.parse(localStorage.getItem("user") || "{}");
         if (!user.restaurant_id) {
-          setError("Restaurant ID not found");
+          setError("No se encontró el ID del restaurante");
           setLoading(false);
           return;
         }
@@ -29,7 +29,7 @@ const RestaurantSettings: React.FC = () => {
         if (fetchError) throw fetchError;
         setRestaurant(data);
       } catch (err) {
-        setError("Failed to load restaurant details");
+        setError("No se pudieron cargar los detalles del restaurante");
       } finally {
         setLoading(false);
       }
@@ -65,11 +65,11 @@ const RestaurantSettings: React.FC = () => {
   };
 
   if (loading) {
-    return <Loading text="Loading settings..." />;
+    return <Loading text="Cargando configuración..." />;
   }
 
   if (error || !restaurant) {
-    return <Alert type="error" message={error || "Restaurant not found"} />;
+    return <Alert type="error" message={error || "Restaurante no encontrado"} />;
   }
 
   const menuUrl = `${window.location.origin}/menu/${restaurant.slug}`;
@@ -78,9 +78,9 @@ const RestaurantSettings: React.FC = () => {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h2 className="text-2xl font-bold text-text mb-2">Settings</h2>
+        <h2 className="text-2xl font-bold text-text mb-2">Configuración</h2>
         <p className="text-text-secondary">
-          Manage your restaurant QR code and menu access
+          Administre el código QR y el acceso al menú de su restaurante
         </p>
       </div>
 
@@ -89,9 +89,9 @@ const RestaurantSettings: React.FC = () => {
         <div className="flex items-start space-x-2 mb-4">
           <QrCodeIcon className="w-6 h-6 text-accent" />
           <div>
-            <h3 className="text-xl font-bold text-text">Menu QR Code</h3>
+            <h3 className="text-xl font-bold text-text">Código QR del menú</h3>
             <p className="text-text-secondary text-sm">
-              Customers can scan this QR code to access your menu
+              Sus clientes pueden escanear este código QR para acceder a su menú
             </p>
           </div>
         </div>
@@ -114,21 +114,21 @@ const RestaurantSettings: React.FC = () => {
               onClick={downloadQRCode}
               fullWidth
             >
-              Download QR Code
+              Descargar código QR
             </Button>
           </div>
 
           {/* QR Code Info */}
           <div className="space-y-4">
             <div>
-              <label className="label mb-2">Restaurant Name</label>
+              <label className="label mb-2">Nombre del restaurante</label>
               <div className="p-3 bg-bg-subtle rounded-lg text-text font-medium">
                 {restaurant.name}
               </div>
             </div>
 
             <div>
-              <label className="label mb-2">Menu URL</label>
+              <label className="label mb-2">URL del menú</label>
               <div className="p-3 bg-bg-subtle rounded-lg break-all text-text-secondary text-sm">
                 {menuUrl}
               </div>
@@ -139,26 +139,26 @@ const RestaurantSettings: React.FC = () => {
                 className="inline-flex items-center space-x-1 text-accent hover:text-accent-secondary mt-2 text-sm"
               >
                 <ExternalLink className="w-4 h-4" />
-                <span>Open menu page</span>
+                <span>Abrir página del menú</span>
               </a>
             </div>
 
             <div className="bg-accent/10 border border-accent/20 rounded-lg p-4">
-              <h4 className="font-semibold text-text mb-2">How to use:</h4>
+              <h4 className="font-semibold text-text mb-2">Cómo usarlo:</h4>
               <ol className="space-y-2 text-text-secondary text-sm">
-                <li>1. Download the QR code image</li>
-                <li>2. Print and place it on tables, counter, or entrance</li>
-                <li>3. Customers scan with their phone camera</li>
-                <li>4. They'll instantly access your live menu</li>
+                <li>1. Descargue la imagen del código QR</li>
+                <li>2. Imprímalo y colóquelo en las mesas, el mostrador o la entrada</li>
+                <li>3. Los clientes escanean con la cámara de su teléfono</li>
+                <li>4. Accederán al instante a su menú en vivo</li>
               </ol>
             </div>
 
             <div className="bg-success/10 border border-success/20 rounded-lg p-4">
               <p className="text-success text-sm">
-                ✓ Menu updates automatically reflect in real-time
+                ✓ Las actualizaciones del menú se reflejan automáticamente en tiempo real
               </p>
               <p className="text-success text-sm">
-                ✓ No app installation required for customers
+                ✓ Los clientes no necesitan instalar ninguna aplicación
               </p>
             </div>
           </div>
@@ -168,15 +168,15 @@ const RestaurantSettings: React.FC = () => {
       {/* Additional Settings Placeholder */}
       <Card className="bg-bg-subtle">
         <h3 className="text-lg font-bold text-text mb-3">
-          Additional Settings (Coming Soon)
+          Configuración adicional (próximamente)
         </h3>
         <ul className="space-y-2 text-text-secondary text-sm">
-          <li>• Update restaurant profile and contact info</li>
-          <li>• Upload logo and cover images</li>
-          <li>• Customize ordering page theme</li>
-          <li>• Set business hours and holidays</li>
-          <li>• Configure tax rates and payment methods</li>
-          <li>• Change password and security settings</li>
+          <li>• Actualizar el perfil y la información de contacto del restaurante</li>
+          <li>• Subir logotipo e imágenes de portada</li>
+          <li>• Personalizar el tema de la página de pedidos</li>
+          <li>• Configurar horarios y días festivos</li>
+          <li>• Configurar tasas de impuestos y métodos de pago</li>
+          <li>• Cambiar contraseña y ajustes de seguridad</li>
         </ul>
       </Card>
     </div>

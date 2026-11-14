@@ -73,7 +73,7 @@ const Menu: React.FC = () => {
   };
 
   if (loading) {
-    return <Loading text="Loading menu..." />;
+    return <Loading text="Cargando menú..." />;
   }
 
   return (
@@ -81,16 +81,16 @@ const Menu: React.FC = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-text mb-2">Menu Management</h2>
+          <h2 className="text-2xl font-bold text-text mb-2">Gestión del menú</h2>
           <p className="text-text-secondary">
-            Manage your menu items and availability
+            Administre los artículos de su menú y su disponibilidad
           </p>
         </div>
         <Button
           icon={<Plus className="w-5 h-5" />}
           onClick={() => setShowAddModal(true)}
         >
-          Add Item
+          Agregar artículo
         </Button>
       </div>
 
@@ -98,7 +98,7 @@ const Menu: React.FC = () => {
       <div className="flex items-center space-x-2 text-sm text-success">
         <div className="w-2 h-2 bg-success rounded-full animate-pulse" />
         <span>
-          Live updates • Availability changes update customers in real-time
+          Actualizaciones en vivo • Los cambios de disponibilidad se reflejan en tiempo real para los clientes
         </span>
       </div>
 
@@ -106,7 +106,7 @@ const Menu: React.FC = () => {
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="flex-1">
           <Input
-            placeholder="Search menu items..."
+            placeholder="Buscar artículos del menú..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             icon={<Search className="w-5 h-5" />}
@@ -123,7 +123,7 @@ const Menu: React.FC = () => {
                   : "bg-white border border-border text-text-secondary hover:bg-bg-subtle"
               }`}
             >
-              {category === "all" ? "All Items" : category}
+              {category === "all" ? "Todos los artículos" : category}
             </button>
           ))}
         </div>
@@ -134,18 +134,18 @@ const Menu: React.FC = () => {
         <Card className="text-center py-12">
           <Package className="w-16 h-16 text-text-secondary mx-auto mb-4 opacity-50" />
           <h3 className="text-xl font-semibold text-text mb-2">
-            No Menu Items Found
+            No se encontraron artículos del menú
           </h3>
           <p className="text-text-secondary mb-4">
             {searchTerm || categoryFilter !== "all"
-              ? "Try adjusting your filters"
-              : "Start by adding your first menu item"}
+              ? "Intente ajustar los filtros"
+              : "Comience agregando su primer artículo del menú"}
           </p>
           <Button
             icon={<Plus className="w-5 h-5" />}
             onClick={() => setShowAddModal(true)}
           >
-            Add First Item
+            Agregar primer artículo
           </Button>
         </Card>
       ) : (
@@ -178,7 +178,7 @@ const Menu: React.FC = () => {
                         <Badge
                           variant={item.is_available ? "success" : "neutral"}
                         >
-                          {item.is_available ? "Available" : "Unavailable"}
+                          {item.is_available ? "Disponible" : "No disponible"}
                         </Badge>
                       </div>
                       {item.category && (
@@ -197,7 +197,7 @@ const Menu: React.FC = () => {
 
                   <div className="flex flex-wrap items-center gap-4 text-sm">
                     <div>
-                      <span className="text-text-secondary">Base Price: </span>
+                      <span className="text-text-secondary">Precio base: </span>
                       <span className="text-accent font-semibold text-lg">
                         {formatCurrency(item.base_price)}
                       </span>
@@ -205,7 +205,7 @@ const Menu: React.FC = () => {
 
                     {item.sizes && item.sizes.length > 0 && (
                       <div>
-                        <span className="text-text-secondary">Sizes: </span>
+                        <span className="text-text-secondary">Tamaños: </span>
                         <span className="text-text">
                           {item.sizes.map((s) => s.name).join(", ")}
                         </span>
@@ -214,9 +214,9 @@ const Menu: React.FC = () => {
 
                     {item.addons && item.addons.length > 0 && (
                       <div>
-                        <span className="text-text-secondary">Add-ons: </span>
+                        <span className="text-text-secondary">Complementos: </span>
                         <span className="text-text">
-                          {item.addons.length} available
+                          {item.addons.length} disponibles
                         </span>
                       </div>
                     )}
@@ -238,7 +238,7 @@ const Menu: React.FC = () => {
                     onClick={() => handleToggleAvailability(item)}
                     fullWidth
                   >
-                    {item.is_available ? "Mark Unavailable" : "Mark Available"}
+                    {item.is_available ? "Marcar no disponible" : "Marcar disponible"}
                   </Button>
                   <Button
                     size="sm"
@@ -247,7 +247,7 @@ const Menu: React.FC = () => {
                     onClick={() => handleEdit(item)}
                     fullWidth
                   >
-                    Edit
+                    Editar
                   </Button>
                   <Button
                     size="sm"
@@ -256,7 +256,7 @@ const Menu: React.FC = () => {
                     onClick={() => handleDelete(item)}
                     fullWidth
                   >
-                    Delete
+                    Eliminar
                   </Button>
                 </div>
               </div>
@@ -356,13 +356,13 @@ const MenuItemModal: React.FC<MenuItemModalProps> = ({
     setError("");
 
     if (!formData.name || !formData.base_price) {
-      setError("Name and base price are required");
+      setError("El nombre y el precio base son obligatorios");
       return;
     }
 
     const user = JSON.parse(localStorage.getItem("user") || "{}");
     if (!user.restaurant_id) {
-      setError("Restaurant ID not found");
+      setError("No se encontró el ID del restaurante");
       return;
     }
 
@@ -392,7 +392,7 @@ const MenuItemModal: React.FC<MenuItemModalProps> = ({
     if (success) {
       onClose();
     } else {
-      setError(`Failed to ${mode} menu item`);
+      setError(mode === "add" ? "No se pudo agregar el artículo del menú" : "No se pudo guardar el artículo del menú");
     }
   };
 
@@ -440,42 +440,42 @@ const MenuItemModal: React.FC<MenuItemModalProps> = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title={mode === "add" ? "Add Menu Item" : "Edit Menu Item"}
+      title={mode === "add" ? "Agregar artículo del menú" : "Editar artículo del menú"}
       size="lg"
     >
       <form onSubmit={handleSubmit} className="space-y-6">
         {error && <Alert type="error" message={error} />}
 
         <Input
-          label="Item Name"
+          label="Nombre del artículo"
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          placeholder="e.g., Margherita Pizza"
+          placeholder="Ej.: Pizza Margarita"
           required
         />
 
         <Textarea
-          label="Description (Optional)"
+          label="Descripción (opcional)"
           value={formData.description}
           onChange={(e) =>
             setFormData({ ...formData, description: e.target.value })
           }
-          placeholder="Describe your item..."
+          placeholder="Describa el artículo..."
           rows={2}
         />
 
         <div className="grid sm:grid-cols-2 gap-4">
           <Input
-            label="Category"
+            label="Categoría"
             value={formData.category}
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
             }
-            placeholder="e.g., Pizza, Burgers"
+            placeholder="Ej.: Pizza, Hamburguesas"
           />
 
           <Input
-            label="Base Price"
+            label="Precio base"
             type="number"
             step="0.01"
             value={formData.base_price}
@@ -488,7 +488,7 @@ const MenuItemModal: React.FC<MenuItemModalProps> = ({
         </div>
 
         <Input
-          label="Image URL (Optional)"
+          label="URL de la imagen (opcional)"
           value={formData.image_url}
           onChange={(e) =>
             setFormData({ ...formData, image_url: e.target.value })
@@ -498,7 +498,7 @@ const MenuItemModal: React.FC<MenuItemModalProps> = ({
 
         {/* Sizes */}
         <div>
-          <label className="label mb-3">Sizes (Optional)</label>
+          <label className="label mb-3">Tamaños (opcional)</label>
           <div className="space-y-2 mb-3">
             {formData.sizes.map((size, index) => (
               <div
@@ -520,12 +520,12 @@ const MenuItemModal: React.FC<MenuItemModalProps> = ({
           </div>
           <div className="flex gap-2">
             <Input
-              placeholder="Size name"
+              placeholder="Nombre del tamaño"
               value={newSize.name}
               onChange={(e) => setNewSize({ ...newSize, name: e.target.value })}
             />
             <Input
-              placeholder="Price"
+              placeholder="Precio"
               type="number"
               step="0.01"
               value={newSize.price}
@@ -534,14 +534,14 @@ const MenuItemModal: React.FC<MenuItemModalProps> = ({
               }
             />
             <Button type="button" onClick={addSize} variant="outline">
-              Add
+              Agregar
             </Button>
           </div>
         </div>
 
         {/* Add-ons */}
         <div>
-          <label className="label mb-3">Add-ons (Optional)</label>
+          <label className="label mb-3">Complementos (opcional)</label>
           <div className="space-y-2 mb-3">
             {formData.addons.map((addon, index) => (
               <div
@@ -563,14 +563,14 @@ const MenuItemModal: React.FC<MenuItemModalProps> = ({
           </div>
           <div className="flex gap-2">
             <Input
-              placeholder="Add-on name"
+              placeholder="Nombre del complemento"
               value={newAddon.name}
               onChange={(e) =>
                 setNewAddon({ ...newAddon, name: e.target.value })
               }
             />
             <Input
-              placeholder="Price"
+              placeholder="Precio"
               type="number"
               step="0.01"
               value={newAddon.price}
@@ -579,7 +579,7 @@ const MenuItemModal: React.FC<MenuItemModalProps> = ({
               }
             />
             <Button type="button" onClick={addAddon} variant="outline">
-              Add
+              Agregar
             </Button>
           </div>
         </div>
@@ -594,15 +594,15 @@ const MenuItemModal: React.FC<MenuItemModalProps> = ({
             }
             className="rounded border-border"
           />
-          <span className="text-text">Available for ordering</span>
+          <span className="text-text">Disponible para pedidos</span>
         </label>
 
         <div className="flex gap-3">
           <Button type="button" variant="outline" onClick={onClose} fullWidth>
-            Cancel
+            Cancelar
           </Button>
           <Button type="submit" loading={loading} fullWidth>
-            {mode === "add" ? "Add Item" : "Save Changes"}
+            {mode === "add" ? "Agregar artículo" : "Guardar cambios"}
           </Button>
         </div>
       </form>
@@ -635,16 +635,16 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ isOpen, item, onClose }) => {
   if (!item) return null;
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Delete Menu Item" size="md">
+    <Modal isOpen={isOpen} onClose={onClose} title="Eliminar artículo del menú" size="md">
       <div className="space-y-4">
         <Alert
           type="warning"
-          message={`Are you sure you want to delete "${item.name}"? This action cannot be undone.`}
+          message={`¿Está seguro de que desea eliminar "${item.name}"? Esta acción no se puede deshacer.`}
         />
 
         <div className="flex gap-3">
           <Button variant="outline" onClick={onClose} fullWidth>
-            Cancel
+            Cancelar
           </Button>
           <Button
             variant="danger"
@@ -652,7 +652,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ isOpen, item, onClose }) => {
             loading={loading}
             fullWidth
           >
-            Delete Item
+            Eliminar artículo
           </Button>
         </div>
       </div>

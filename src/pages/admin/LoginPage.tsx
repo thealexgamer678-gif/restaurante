@@ -19,12 +19,12 @@ const AdminLogin: React.FC = () => {
     setError("");
 
     if (!formData.email || !formData.password) {
-      setError("Please enter both email and password");
+      setError("Por favor, ingrese el correo electrónico y la contraseña");
       return;
     }
 
     if (!isValidEmail(formData.email)) {
-      setError("Please enter a valid email address");
+      setError("Por favor, ingrese un correo electrónico válido");
       return;
     }
 
@@ -43,13 +43,13 @@ const AdminLogin: React.FC = () => {
 
       if (adminError) {
         console.error("Admin login RPC error:", adminError);
-        setError("Invalid email or password");
+        setError("Correo electrónico o contraseña no válidos");
         setLoading(false);
         return;
       }
 
       if (!adminData || adminData.length === 0) {
-        setError("Invalid email or password");
+        setError("Correo electrónico o contraseña no válidos");
         setLoading(false);
         return;
       }
@@ -70,7 +70,7 @@ const AdminLogin: React.FC = () => {
       navigate("/admin");
     } catch (err: any) {
       console.error("Admin login error:", err);
-      setError("An error occurred. Please try again.");
+      setError("Ocurrió un error. Por favor, inténtelo de nuevo.");
     } finally {
       setLoading(false);
     }
@@ -91,7 +91,7 @@ const AdminLogin: React.FC = () => {
           className="inline-flex items-center text-text-secondary hover:text-text mb-8"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Home
+          Volver al inicio
         </Link>
 
         {/* Login Card */}
@@ -101,8 +101,8 @@ const AdminLogin: React.FC = () => {
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/5 mb-4">
               <Shield className="w-10 h-10 text-accent" />
             </div>
-            <h1 className="text-2xl font-bold text-text mb-2">Admin Login</h1>
-            <p className="text-text-secondary">Access the admin panel</p>
+            <h1 className="text-2xl font-bold text-text mb-2">Iniciar sesión de administrador</h1>
+            <p className="text-text-secondary">Acceda al panel de administrador</p>
           </div>
 
           {/* Error Alert */}
@@ -111,7 +111,7 @@ const AdminLogin: React.FC = () => {
           {/* Login Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <Input
-              label="Email Address"
+              label="Correo electrónico"
               name="email"
               type="email"
               value={formData.email}
@@ -128,25 +128,25 @@ const AdminLogin: React.FC = () => {
               type="password"
               value={formData.password}
               onChange={handleChange}
-              placeholder="Enter your password"
+              placeholder="Ingrese su contraseña"
               icon={<Lock className="w-5 h-5" />}
               required
               autoComplete="current-password"
             />
 
             <Button type="submit" loading={loading} fullWidth size="lg">
-              Login as Admin
+              Iniciar sesión como administrador
             </Button>
           </form>
 
           {/* Info Box */}
           <div className="mt-6 p-4 bg-bg-subtle rounded-lg">
             <p className="text-sm text-text-secondary">
-              <strong>Default credentials:</strong>
+              <strong>Credenciales predeterminadas:</strong>
               <br />
-              Email: admin@foodorder.com
+              Correo electrónico: admin@foodorder.com
               <br />
-              Password: admin123
+              Contraseña: admin123
             </p>
           </div>
         </Card>

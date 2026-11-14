@@ -41,10 +41,10 @@ const AdminDashboard: React.FC = () => {
   if (!admin) return null;
 
   const navItems = [
-    { path: "/admin", icon: LayoutDashboard, label: "Dashboard" },
-    { path: "/admin/requests", icon: FileText, label: "Pending Requests" },
-    { path: "/admin/restaurants", icon: StoreIcon, label: "All Restaurants" },
-    { path: "/admin/analytics", icon: BarChart3, label: "Analytics" },
+    { path: "/admin", icon: LayoutDashboard, label: "Panel" },
+    { path: "/admin/requests", icon: FileText, label: "Solicitudes pendientes" },
+    { path: "/admin/restaurants", icon: StoreIcon, label: "Todos los restaurantes" },
+    { path: "/admin/analytics", icon: BarChart3, label: "Analítica" },
   ];
 
   return (
@@ -56,7 +56,7 @@ const AdminDashboard: React.FC = () => {
             <div className="flex items-center space-x-3">
               <Shield className="w-8 h-8 text-accent" />
               <div>
-                <h1 className="text-lg font-bold text-text">Admin Panel</h1>
+                <h1 className="text-lg font-bold text-text">Panel de administrador</h1>
                 <p className="text-xs text-text-secondary">{admin.email}</p>
               </div>
             </div>
@@ -65,7 +65,7 @@ const AdminDashboard: React.FC = () => {
               className="flex items-center space-x-2 text-text-secondary hover:text-error transition-colors"
             >
               <LogOut className="w-5 h-5" />
-              <span>Logout</span>
+              <span>Cerrar sesión</span>
             </button>
           </div>
         </div>

@@ -36,7 +36,7 @@ const RestaurantDashboard: React.FC = () => {
       setUser(parsedUser);
       // In real app, fetch restaurant data
       setRestaurant({
-        name: "Demo Restaurant",
+        name: "Restaurante de demostración",
         slug: "demo-restaurant",
       });
     }
@@ -50,11 +50,11 @@ const RestaurantDashboard: React.FC = () => {
   if (!user) return null;
 
   const navItems = [
-    { path: "/restaurant", icon: LayoutDashboard, label: "Dashboard" },
-    { path: "/restaurant/orders", icon: ShoppingBag, label: "Orders" },
-    { path: "/restaurant/menu", icon: UtensilsCrossed, label: "Menu" },
-    { path: "/restaurant/reports", icon: FileText, label: "Reports" },
-    { path: "/restaurant/settings", icon: Settings, label: "Settings" },
+    { path: "/restaurant", icon: LayoutDashboard, label: "Panel" },
+    { path: "/restaurant/orders", icon: ShoppingBag, label: "Pedidos" },
+    { path: "/restaurant/menu", icon: UtensilsCrossed, label: "Menú" },
+    { path: "/restaurant/reports", icon: FileText, label: "Reportes" },
+    { path: "/restaurant/settings", icon: Settings, label: "Configuración" },
   ];
 
   return (
@@ -67,7 +67,7 @@ const RestaurantDashboard: React.FC = () => {
               <StoreIcon className="w-8 h-8 text-accent" />
               <div>
                 <h1 className="text-lg font-bold text-text">
-                  {restaurant?.name || "Restaurant"}
+                  {restaurant?.name || "Restaurante"}
                 </h1>
                 <p className="text-xs text-text-secondary">{user.email}</p>
               </div>
@@ -77,7 +77,7 @@ const RestaurantDashboard: React.FC = () => {
               className="flex items-center space-x-2 text-text-secondary hover:text-error transition-colors"
             >
               <LogOut className="w-5 h-5" />
-              <span>Logout</span>
+              <span>Cerrar sesión</span>
             </button>
           </div>
         </div>
